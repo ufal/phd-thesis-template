@@ -59,7 +59,8 @@
 
 % acronyms and glossaries
 \usepackage[acronym, nomain]{glossaries}
-\usepackage[shortcuts=ac,automake]{glossaries-extra}
+\usepackage[shortcuts=ac]{glossaries-extra}
+\makeglossaries
 \preto\chapter{\glsresetall}
 
 \setabbreviationstyle[acronym]{long-short}
@@ -80,7 +81,6 @@
     unicode=true,
 }
 
-\makeglossaries{}
 \input{acronyms}
 
 % Czech babel conflicts with cline, hacky fix (http://tex.stackexchange.com/questions/111999/slovak-and-czech-babel-gives-problems-with-cmidrule-and-cline):
@@ -128,7 +128,7 @@ da-ta-set
 % force-ordering citations according to dummy keys
 \newcommand{\dummybiborderkey}[1]{}
 
-\include{macros}
+\input{macros}
 
 \newcommand{\veryshortarrow}[1][3pt]{\mathrel{%
      \vcenter{\hbox{\rule[-.5\fontdimen8\textfont3]{#1}{\fontdimen8\textfont3}}}%
@@ -253,7 +253,7 @@ I understand that my work relates to the rights and obligations
 
   \vspace{1\baselineskip}
   \noindent
-  ... continued.
+  ... continued. }
 
 \vfill
 
