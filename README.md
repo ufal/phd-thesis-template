@@ -1,6 +1,8 @@
 # phd-thesis-template
 A template PhD thesis at UFAL
 
+The font is Linux Libertine and it needs to be installed first (depending on the machine).
+
 Compile with:
 
 ```
