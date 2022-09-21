@@ -7,10 +7,10 @@ Compile with:
 cd thesis
 lualatex thesis
 bibtex thesis
+makeglossaries thesis
 lualatex thesis
 lualatex thesis
 ```
-
 ... and don't forget to download fresh ACL anthology:
 
 ```
