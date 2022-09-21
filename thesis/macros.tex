@@ -1,0 +1,65 @@
+%%% This file contains definitions of various useful macros and environments %%%
+%%% Please add more macros here instead of cluttering other files with them. %%%
+
+%%% Minor tweaks of style
+
+% This macro defines a chapter, which is not numbered, but is included
+% in the table of contents.
+\def\chapwithtoc#1{
+\chapter*{#1}
+\addcontentsline{toc}{chapter}{#1}
+}
+
+% Draw black "slugs" whenever a line overflows, so that we can spot it easily.
+\overfullrule=1mm
+
+
+%%% The field of all real and natural numbers
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+%%% Useful operators for statistics and probability
+\DeclareMathOperator{\pr}{\textsf{P}}
+\DeclareMathOperator{\E}{\textsf{E}\,}
+\DeclareMathOperator{\var}{\textrm{var}}
+\DeclareMathOperator{\sd}{\textrm{sd}}
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\softmax}{softmax}
+
+\DeclareMathOperator{\relu}{ReLu}
+\let\emptyset\varnothing{}
+
+\DeclareMathOperator*{\sgn}{sgn}
+\DeclareMathOperator{\attn}{Attn}
+\DeclareMathOperator{\multihead}{Multihead}
+\DeclareMathOperator{\concat}{concat}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%%% Transposition of a vector/matrix
+\newcommand{\T}[1]{#1^\top}
+
+%%% Various math goodies
+\newcommand{\goto}{\rightarrow}
+\newcommand{\gotop}{\stackrel{P}{\longrightarrow}}
+\newcommand{\maon}[1]{o(n^{#1})}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\dint}{\int_0^\tau\!\!\int_0^\tau}
+\newcommand{\isqr}[1]{\frac{1}{\sqrt{#1}}}
+
+%%% Various table goodies
+\newcommand{\pulrad}[1]{\raisebox{1.5ex}[0pt]{#1}}
+\newcommand{\mc}[1]{\multicolumn{1}{c}{#1}}
+\newcommand{\mcl}[1]{\multicolumn{1}{l}{#1}}
+
+% this is for the examples
+\newcommand{\redund}[1]{\textcolor{black!30!red!100}{\underline{#1}}}
+\newcommand{\greenund}[1]{\textcolor{black!40!green!100}{\underline{#1}}}
+\newcommand{\blueund}[1]{\textcolor{black!30!blue!100}{\underline{#1}}}
+
+% check and cross marks
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%

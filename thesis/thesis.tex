@@ -1,0 +1,313 @@
+%%% The main file. It contains definitions of basic parameters and includes all other parts.
+
+%% Settings for single-side (simplex) printing
+% Margins: left 40mm, right 25mm, top and bottom 25mm
+% (but beware, LaTeX adds 1in implicitly)
+\documentclass[12pt,notitlepage,a4paper,openright]{report}
+\pagestyle{plain}
+
+\PassOptionsToPackage{hyperfootnotes=false}{hyperref}
+
+% fix pdfx
+\usepackage{etoolbox}
+% \makeatletter
+% \@ifl@t@r\fmtversion{2021-06-01}%
+%  {\AddToHook{package/after/xmpincl}
+%    {\patchcmd\mcs@xmpincl@patchFile{\if\par}{\ifx\par}{}{\fail}}}{}
+% \makeatother
+
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\usepackage[a-2u]{pdfx}
+\usepackage{fontspec}
+\usepackage[czech,english]{babel}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage[defaultlines=4,all]{nowidow}
+
+% Turn this on when needed:
+%\usepackage{microtype}
+
+\usepackage{graphicx}
+\usepackage[twoside, inner=3.7cm, outer=2.9cm, top=2.6cm, bottom=3.4cm]{geometry}
+\usepackage{thesis}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{arydshln} % dashed lines in tables
+\usepackage{array}
+\usepackage{amssymb,latexsym,pifont}
+\usepackage{amsmath}
+\usepackage{enumitem} % custom lists
+\usepackage[normalem]{ulem} % underlining
+\usepackage{setspace} % line spacing
+\usepackage{varioref} % nice references (above/below)
+\usepackage[above,section]{placeins} % avoid figures pushed at end of chapters
+\usepackage{listings}
+
+\usepackage{tabularx}
+\usepackage{booktabs} % nicer lines in table
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{gnuplot-lua-tikz}
+\usetikzlibrary{shapes.geometric}
+\usepackage{epstopdf}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+
+% acronyms and glossaries
+\usepackage[acronym, nomain]{glossaries}
+\usepackage[shortcuts=ac,automake]{glossaries-extra}
+\preto\chapter{\glsresetall}
+
+\setabbreviationstyle[acronym]{long-short}
+
+\usepackage{subcaption} % sub figures in a fiture
+\usepackage{standalone} % include standoalone tikz images
+\usepackage{bibentry}
+
+% hack bibentry command for list of publications
+\makeatletter
+\renewcommand\bibentry[1]{\nocite{#1}{\frenchspacing
+     \@nameuse{BR@r@#1\@extra@b@citeb}}}
+\makeatother
+
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+    unicode=true,
+}
+
+\makeglossaries{}
+\input{acronyms}
+
+% Czech babel conflicts with cline, hacky fix (http://tex.stackexchange.com/questions/111999/slovak-and-czech-babel-gives-problems-with-cmidrule-and-cline):
+% - basically disables hyphenation in tables, but it's not used anyway so it doesn't matter
+\preto\tabular{\shorthandoff{-}}
+\preto\tikzpicture{\shorthandoff{-}}
+%
+%
+\hyphenation{%
+da-ta-sets
+da-ta-set
+} % -- custom hyphenation
+
+\setmainfont[Ligatures=Common]{Linux Libertine}
+\setsansfont[Scale=MatchLowercase]{DejaVu Sans}
+\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
+
+
+\setstretch{1.1} % line spacing
+
+\expandafter\def\expandafter\quote\expandafter{\quote\small} % smaller quotations font
+
+% orphan & widow control
+%\clubpenalty 10000
+%\widowpenalty 10000
+
+% gaps between text and footnotes
+\def\footnoteskip#1{
+  \renewcommand\footnoterule{
+     \vspace{#1}
+     \hrule width 0.4\columnwidth%
+     \vspace{3pt}
+}
+}
+\footnoteskip{0.8em}
+
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
+%% cutting down warnings
+%\hfuzz=2pt
+%\hbadness=10000
+
+% force-ordering citations according to dummy keys
+\newcommand{\dummybiborderkey}[1]{}
+
+\include{macros}
+
+\newcommand{\veryshortarrow}[1][3pt]{\mathrel{%
+     \vcenter{\hbox{\rule[-.5\fontdimen8\textfont3]{#1}{\fontdimen8\textfont3}}}%
+     \mkern-4mu\hbox{\usefont{U}{lasy}{m}{n}\symbol{41}}}}
+
+\newcommand{\paperdisclaim}[1]{%
+\begin{center}\begin{minipage}{0.9\textwidth}
+\footnotesize\it #1
+\end{minipage}\end{center}
+}
+
+\def\ignorecolumn#1\unskip{}
+
+\title{Doctoral Thesis Template}
+
+\def\fulldate{}
+\author{Random Author}
+\date{2022}
+\dept{Institute of Formal and Applied Linguistics}
+\supervisor{prof. Tim McTempleface}
+\studyprogram{Computer Science}
+\studyfield{Computational Linguistics}
+
+
+\begin{document}
+
+%
+%
+%
+\renewcommand{\thepage}{\roman{page}}
+\selectlanguage{english}
+\maketitle
+
+\pagestyle{plain}
+\normalsize
+\setcounter{page}{2}
+
+\cleardoublepage{}
+\ \vspace{10mm}
+
+\noindent \it
+
+\vspace{\fill}
+\noindent \rm
+I declare that I carried out this doctoral thesis independently,
+  and only with the cited sources, literature and other professional sources.
+
+I understand that my work relates to the rights and obligations
+  under the Act No.~121/2000 Coll., the Copyright Act, as amended,
+  in particular the fact that Charles University has the right
+  to conclude a license agreement on the use of this work as a school work
+  pursuant to Section~60 paragraph~1 of the Copyright Act.
+
+\vspace{2cm}
+\noindent Prague, November 17, 1989 (TODO) \hspace{\fill}\theauthor % doplňte patřičné
+                                                             % datum, jméno a
+                                                             % příjmení
+
+%%%   Do not forget to SIGN the printed book here!
+%%%                  *********
+
+
+\cleardoublepage{} % new page
+\pagestyle{plain}
+
+\addcontentsline{toc}{chapter}{English Abstract}
+
+%\selectlanguage{english}
+\begin{description}[leftmargin=7.5em,labelwidth=7em,labelindent=0em,labelsep=0.5em]
+\item[Title:] \thetitle{}
+\item[Author:] \theauthor{}
+\item[Department:] \thedept{}
+\item[Supervisor:] \thesupervisor{},\\ \thedept{}
+\end{description}
+\subsubsection{Abstract:}
+
+\input{abstract_en}
+
+\begin{description}[leftmargin=7.5em,labelwidth=7em,labelindent=0em,labelsep=0.5em]
+        %
+\item[Keywords:] TODO add keywords such as: randomness, deep randomness, deep random processing (notice the nice black block marking the hbox overflow).
+    %
+\end{description}
+
+
+\cleardoublepage{}
+\addcontentsline{toc}{chapter}{Czech Abstract}
+\selectlanguage{czech}
+\begin{description}[leftmargin=7.5em,labelwidth=7em,labelindent=0em,labelsep=0.5em]
+\item[Název práce:] TODO Český název práce TODO
+\item[Autor:] \theauthor{}
+\item[Katedra:] Ústav formální a aplikované lingvistiky
+\item[Vedoucí práce:] \thesupervisor,\\ Ústav formální a aplikované lingvistiky
+\end{description}
+
+\subsubsection{Abstrakt:}
+
+\input{abstract_cs}
+
+\begin{description}[leftmargin=7.5em,labelwidth=7em,labelindent=0em,labelsep=0.5em]
+%
+\item[Klíčová slova:] TODO česká klíčová slova: nevim, nevim, nic
+%
+\end{description}
+
+\selectlanguage{english}
+
+
+
+
+\cleardoublepage{}
+\ \vspace{10mm}
+
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\subsection*{Acknowledgements}
+
+{ TODO Here, you can thank anyone and say anything.
+
+  \vspace{1\baselineskip}
+  \noindent
+  This is how I separated different kinds of thank-yous.
+
+  \vspace{1\baselineskip}
+  \noindent
+  ... continued.
+
+\vfill
+
+
+{\noindent\footnotesize %
+  TODO Here, you can/should add stuff like: This work has been using language
+  resources and tools developed and/or stored and/or distributed by the
+  LINDAT/CLARIN project of the Ministry of Education, Youth and Sports of the
+  Czech Republic (project LM2015071).%
+}
+
+\cleardoublepage{}
+\addcontentsline{toc}{chapter}{Table of Contents}
+\tableofcontents % automatically generated
+
+\cleardoublepage{}
+\renewcommand{\chapterheadstartvskip}{\vspace*{-10mm}} % chapter spacing
+\setstretch{1.2} % line spacing
+
+%
+% TEXT START
+%
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
+
+\sloppy
+\include{01-intro}
+\include{02-method}
+\include{03-conclusions}
+
+%
+% TEXT END
+%
+
+\renewcommand{\chapterheadstartvskip}{\vspace*{0mm}} % chapter spacing
+
+\cleardoublepage{}
+\bibliographystyle{csplainnat}
+\addcontentsline{toc}{chapter}{Bibliography}
+{\small \bibliography{references,anthology}}
+
+\cleardoublepage{}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\renewcommand*{\acronymname}{List of Abbreviations}
+\printglossary[type=\acronymtype,style=index]
+
+\addcontentsline{toc}{chapter}{List of Tables}
+{\small \listoftables\par}
+
+\addcontentsline{toc}{chapter}{List of Figures}
+{\small \listoffigures\par}
+
+\cleardoublepage{}
+\addcontentsline{toc}{chapter}{List of Publications}
+\include{list_of_publications}
+
+\end{document}

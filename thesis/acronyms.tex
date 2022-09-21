@@ -1,0 +1,61 @@
+\newcommand*\myglsentry[1]{%
+  \protect\ifglsused{#1}{%
+    \glsentryshort{#1}%
+  }{%
+    \glsentrylong{#1}%
+  }%
+}
+
+
+\newacronym{ai}{AI}{artificial intelligence}
+\newacronym{ar}{AR}{autoregressive}
+\newacronym{asr}{ASR}{automatic speech recognition}
+\newacronym{axe}{AXE}{aligned cross-entropy}
+\newacronym{bert}{BERT}{bidirectional encoder representations from Transformers}
+\newacronym{bleu}{BLEU}{bilingual evaluation understudy}
+\newacronym{bon}{BoN}{bag-of-ngrams}
+\newacronym{bpe}{BPE}{byte-pair encoding}
+\newacronym{chrf}{ChrF}{character F-score}
+\newacronym{cmlm}{CMLM}{conditional masked language model}
+\newacronym{cnn}{CNN}{convolutional neural network}
+\newacronym{comet}{COMET}{Crosslingual Optimized Metric for Evaluation of Translation}
+\newacronym{crf}{CRF}{conditional random fields}
+\newacronym{ctc}{CTC}{connectionist temporal classification}
+\newacronym{disco}{DisCo}{disentangled context}
+\newacronym{em}{EM}{expectation-maximization}
+\newacronym{glat}{GLAT}{Glancing Transformer}
+\newacronym{gru}{GRU}{Gated Recurrent Unit}
+\newacronym{levt}{LevT}{Levenshtein Transformer}
+\newacronym{lm}{LM}{language model}
+\newacronym{lpd}{LPD}{length parallel decoding}
+\newacronym{lstm}{LSTM}{Long Short-Term Memory}
+\newacronym{lt}{LT}{Latent Transformer}
+\newacronym{ml}{ML}{machine learning}
+\newacronym{mlm}{MLM}{masked language model}
+\newacronym{mmt}{MMT}{multimodal machine translation}
+\newacronym{mt}{MT}{machine translation}
+\newacronym{nar}{NAR}{non-autoregressive}
+\newacronym{nlp}{NLP}{natural language processing}
+\newacronym{nmt}{NMT}{neural machine translation}
+\newacronym{nn}{NN}{neural network}
+\newacronym{npd}{NPD}{noisy parallel decoding}
+\newacronym{oaxe}{OaXE}{order-agnostic cross-entropy}
+\newacronym{odd}{ODD}{optimal deduplicated decoding}
+\newacronym{oov}{OOV}{out-of-vocabulary}
+\newacronym{relu}{ReLU}{Rectified Linear Unit}
+\newacronym{rnn}{RNN}{recurrent neural network}
+\newacronym{san}{SAN}{self-attentive network}
+\newacronym{sgd}{SGD}{stochastic gradient descent}
+\newacronym{smart}{SMART}{semi-autoregressive training}
+\newacronym{tpu}{TPU}{tensor processing unit}
+\newacronym{wmt}{WMT}{Conference on Machine Translation}
+\newacronym{wngt}{WNGT}{Workshop on Neural Generation and Translation}
+\newacronym{xlm}{XLM}{cross-lingual language model}
+
+\newacronym{dcrf}{DCRF}{dynamic-transition \myglsentry{crf}}
+\newacronym{emodd}{EM+ODD}{\myglsentry{em} training + \myglsentry{odd}}
+\newacronym{nat}{NAT}{non-autoregressive \myglsentry{nmt}}
+
+\newacronym{hintnat}{Hint-NAT}{hint-based training for \myglsentry{nat}}
+\newacronym{jmnat}{JM-NAT}{jointly masked model for \myglsentry{nat}}
+\newacronym{natreg}{NAT-REG}{\myglsentry{nat} with auxiliary regularization}

@@ -1,3 +1,6 @@
+# unless explicitly added, the thesis PDF will be ignored
+thesis.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -11,6 +14,7 @@
 *.cb
 *.cb2
 .*.lb
+*.ist
 
 ## Intermediate documents:
 *.dvi

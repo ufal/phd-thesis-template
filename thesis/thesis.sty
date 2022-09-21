@@ -1,0 +1,146 @@
+%%
+%% This is file `phdthesis.sty`,
+%%
+%% This style file changes the appearance of the pages to improve
+%% the aesthetics of PhD theses (in my opinion =)
+%%
+%% Copyright (C) 2007  Jamie Stevens
+%% adapted 2010,2013,2016 Ondrej Dusek
+%%
+%%  This program is free software: you can redistribute it and/or modify
+%%  it under the terms of the GNU General Public License as published by
+%%  the Free Software Foundation, either version 3 of the License, or
+%%  (at your option) any later version.
+%%
+%%  This program is distributed in the hope that it will be useful,
+%%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%%  GNU General Public License for more details.
+%%
+%%  You should have received a copy of the GNU General Public License
+%%  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%%
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{thesis}[2007/09/11 v1.0 PhD Thesis Style]
+
+%% Load up fancy headers and footers package
+\RequirePackage{fancyhdr}
+
+%% now reset the headers and footers
+\fancyhead{}
+\fancyfoot{}
+%% make the odd pages have the section name on the top right
+\fancyhead[RO]{\sffamily \rightmark}
+%% make the even pages have the chapter name on the top left
+\fancyhead[LE]{\sffamily \leftmark}
+
+%% put the page numbers on the bottom in a nice box
+%% even side pages
+\fancyfoot[LE]{\color{black}{\bfseries \thepage}}
+%% odd side pages
+\fancyfoot[RO]{\color{black}{\bfseries \thepage}}
+
+\widowpenalty=1000
+\clubpenalty=1000
+
+%% make the bottom line above the page number box
+%\renewcommand{\footrulewidth}{0.4pt}
+%\renewcommand{\footruleskip}{0mm}
+
+%% bring the style into effect
+\pagestyle{fancy}
+
+%% now redefine the plain style pages (chapter pages, contents pages)
+%% to have the same page number stuff on the bottom
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyfoot[RO]{\color{black}{\bfseries \thepage}}
+\fancyfoot[LE]{\color{black}{\bfseries \thepage}}
+\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0.5pt}
+}
+
+%% this next section (till \makeatother) makes sure that blank pages
+%% are actually completely blank, cause they're not usually
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+    \hbox{}
+    \vspace*{\fill}
+    \thispagestyle{empty}
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+
+%% now change the chapter style
+%% load up the quotchap package
+\RequirePackage{quotchap}
+\renewcommand*{\sectfont}{\rmfamily\bf\selectfont}
+\renewcommand*{\chapnumfont}{%
+  \usefont{T1}{\@defaultcnfont}{b}{n}\fontsize{100}{130}\selectfont%
+  \color{chaptergrey}
+}
+
+
+% TITLE PAGE
+\def\dept#1{\gdef\@dept{#1}}
+\def\supervisor#1{\gdef\@supervisor{#1}}
+\def\studyprogram#1{\gdef\@studyprogram{#1}}
+\def\studyfield#1{\gdef\@studyfield{#1}}
+\def\@title{}\def\@author{}
+\def\thetitle{\@title}
+\def\theauthor{\@author}
+\def\thedept{\@dept}
+\def\thesupervisor{\@supervisor}
+\def\thestudyprogram{\@studyprogram}
+\def\thestudyfield{\@studyfield}
+
+
+
+\usepackage[calcwidth]{titlesec}
+\titleformat{\section}[hang]{\rmfamily}
+ {\Large\bf\thesection}{12pt}{\Large\bf\raggedright}[]
+%\titleformat{\subsection}[hang]{\rmfamily}
+% {\large\thesubsection}{12pt}{\large}[{\titlerule[0.1pt]}]
+\titleformat*{\subsection}{\large\rmfamily\bf\raggedright}
+
+\RequirePackage{graphicx}
+
+\renewcommand{\maketitle}{
+\begin{titlepage}
+\begin{center}
+\ \\
+
+\vspace{20mm}
+
+
+\includegraphics[height=25mm]{logo-mff.pdf}
+
+\vspace{30mm}
+
+{\Large\bf \uppercase{Doctoral Thesis}}
+
+\vspace{20mm}
+
+%\normalsize
+{\Large\textnormal\theauthor}\\
+\vspace{10mm}
+{\Large\bf \@title}\\
+\end{center}
+\vspace{1mm}
+\begin{center}
+\large
+\@dept\\
+\vspace{10mm}
+\noindent Supervisor: \@supervisor\\
+\vspace{10mm}
+{\normalsize
+\begin{tabular}{rl}
+    Study Program: & \@studyprogram\\
+    Specialization: & \@studyfield
+\end{tabular}
+}
+\vspace{10mm}
+
+Prague \@date
+\end{center}
+\end{titlepage}
+}
